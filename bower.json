@@ -1,0 +1,6 @@
+{
+  "name": "energy-monitoring",
+  "dependencies": {
+    "chartjs": "2.1.6"
+  }
+}
