@@ -1,0 +1,16 @@
+<h2>{{t "profile.housings.title"}} <button class="btn btn-primary">{{fa-icon "plus"}} {{t "profile.housings.add_housing"}}</button>
+</h2>
+
+{{#if model}}
+  <ul class="nav nav-tabs">
+  {{#each model as |housing|}}
+    <li class="nav-item">
+      {{#link-to "profile.housings.edit" housing.id classNames="nav-link"}}{{housing.name}}{{/link-to}}
+    </li>
+  {{/each}}
+  </ul>
+{{else}}
+  {{t "profile.housings.no_housing"}}
+{{/if}}
+
+{{outlet}}

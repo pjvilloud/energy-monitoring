@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-lg form-group">
+    <label for="meterName">{{t "profile.housings.meters.name"}}</label>
+    <input class="form-control" id="meterName" aria-describedby="meterNameHelp" placeholder="{{t "profile.housings.meters.name_placeholder"}}" type="text" value="{{model.name}}">
+    <small id="meterNameHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+  </div>
+  <div class="col-lg form-group">
+    <label for="meterDescription">{{t "profile.housings.meters.description"}}</label>
+    <input class="form-control" id="meterDescription" aria-describedby="meterDescriptionHelp" placeholder="{{t "profile.housings.description_placeholder"}}" type="text" value="{{model.description}}">
+    <small id="meterDescriptionHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg form-group">
+    <label for="meterReference">{{t "profile.housings.meters.reference"}}</label>
+    <input class="form-control" id="meterReference" aria-describedby="meterReferenceHelp" placeholder="{{t "profile.housings.meters.reference_placeholder"}}" type="text" value="{{model.reference}}">
+    <small id="meterReferenceHelp" class="form-text text-muted">{{t "profile.housings.meters.reference_help"}}</small>
+  </div>
+  <div class="col-lg form-group">
+    <label for="meterType">{{t "profile.housings.meters.type"}}</label>
+    {{#power-select
+      classNames="form-control"
+      options=metersTypes
+      selected=selectedType
+      onchange=(action "changeType")
+    as |meterType|}}
+      {{fa-icon meterType.icon}} <strong>{{t (concat "profile.housings.meters.types." meterType.slug)}}</strong>
+    {{/power-select}}
+    <small id="meterTypeHelp" class="form-text text-muted">{{t "profile.housings.meters.type_help"}}</small>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg form-group">
+    <label for="meterUnit">{{t "profile.housings.meters.unit"}}</label>
+    {{#power-select
+      classNames="form-control"
+      selected=model.unit
+      options=units
+      onchange=(action (mut model.unit))
+    as |unit|}}
+      {{{unit}}}
+    {{/power-select}}
+    <small id="meterUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.unit_help"}}</small>
+  </div>
+  <div class="col-lg form-group">
+    <label for="meterPricePerUnit">{{t "profile.housings.meters.pricePerUnit"}}</label>
+    <div class="input-group">
+      <input class="form-control" id="meterPricePerUnit" aria-describedby="meterPricePerUnitHelp" placeholder="{{t "profile.housings.meters.pricePerUnit_placeholder"}}" type="text" value="{{model.pricePerUnit}}">
+      <div class="input-group-append">
+        <span class="input-group-text" id="currencyPricePerUnit">{{model.housing.profile.currencySymbol}} / {{{model.unit}}}</span>
+      </div>
+    </div>
+    <small id="meterPricePerUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.pricePerUnit_help"}}</small>
+  </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary">{{fa-icon "save"}} {{t "actions.save"}}</button>
+</div>
+

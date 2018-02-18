@@ -1,0 +1,50 @@
+<div class="row mt-3">
+  <div class="col-lg form-group">
+    <label for="housingName">{{t "profile.housings.name"}}</label>
+    <input class="form-control" id="housingName" aria-describedby="housingNameHelp" placeholder="{{t "profile.housings.name_placeholder"}}" type="text" value="{{model.name}}">
+    <small id="housingNameHelp" class="form-text text-muted">{{t "profile.housings.name_help"}}.</small>
+  </div>
+  <div class="col-lg form-group">
+    <label for="housingDescription">{{t "profile.housings.description"}}</label>
+    <input class="form-control" id="housingDescription" aria-describedby="housingDescriptionHelp" placeholder="{{t "profile.housings.description_placeholder"}}" type="text" value="{{model.description}}">
+    <small id="housingDescriptionHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+  </div>
+</div>
+
+<h4 class="mt-3">{{t "profile.housings.meters.title"}} <button class="btn btn-primary">{{fa-icon "plus"}} {{t "profile.housings.meters.add_meter"}}</button></h4>
+
+<div class="row">
+  <div class="col">
+    {{#if model.meters}}
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">{{t "profile.housings.meters.name"}}</th>
+          <th scope="col">{{t "profile.housings.meters.type"}}</th>
+          <th scope="col">{{t "profile.housings.meters.reference"}}</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.meters as |meter|}}
+          <tr>
+            <th scope="row">{{meter.name}}</th>
+            <th scope="row">{{meter.type}}</th>
+            <th scope="row">{{meter.reference}}</th>
+            <td>{{#link-to "profile.housings.edit.meters.edit" model.id meter.id classNames="btn btn-primary"}}{{fa-icon "pencil"}} {{t "actions.edit"}}{{/link-to}}</td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      {{t "profile.housings.meters.no_meter"}}
+    {{/if}}
+  </div>
+  <div class="col">
+    {{outlet}}
+  </div>
+</div>
+
+
+
+

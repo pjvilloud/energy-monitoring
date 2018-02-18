@@ -1,0 +1,38 @@
+<h2>{{t "profile.general_informations.title"}}</h2>
+<div class="row">
+  <div class="col-lg form-group">
+    <label for="userName">{{t "profile.general_informations.username"}}</label>
+    <input class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="{{t "profile.general_informations.username_placeholder"}}" type="text" value="{{model.username}}">
+    <small id="emailHelp" class="form-text text-muted">{{t "profile.general_informations.username_help"}}.</small>
+  </div>
+  {{language-chooser}}
+  <div class="col-lg form-group">
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      {{#power-select
+        classNames="form-control"
+        options=currencies
+        searchField="name"
+        selected=selectedCurrency
+        onchange=(action "changeCurrency")
+      as |currency|}}
+        <strong>{{currency.code}}</strong>, {{currency.symbol}}, {{currency.name}}
+      {{/power-select}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg form-group">
+    <label for="country">{{t "profile.general_informations.country"}}</label>
+    <input class="form-control" id="country" aria-describedby="countryHelp" placeholder="{{t "profile.general_informations.country_help"}}" type="text" value="{{model.country}}">
+    <small id="countryHelp" class="form-text text-muted">{{t "profile.general_informations.country_help"}}</small>
+  </div>
+  <div class="col-lg form-group">
+    <label for="city">{{t "profile.general_informations.city"}}</label>
+    <input class="form-control" id="city" aria-describedby="cityHelp" placeholder="{{t "profile.general_informations.city_placeholder"}}" type="text" value="{{model.city}}">
+    <small id="cityHelp" class="form-text text-muted">{{t "profile.general_informations.city_help"}}</small>
+  </div>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary">{{fa-icon "save"}} {{t "actions.save"}}</button>
+</div>

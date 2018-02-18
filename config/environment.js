@@ -47,5 +47,15 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  ENV['ember-cli-mirage'] = {
+    enabled: true
+  };
+  ENV['moment'] = {
+    includeLocales: ['fr']
+  };
+  ENV.i18n = {
+    defaultLocale: 'en'
+  };
+
   return ENV;
 };

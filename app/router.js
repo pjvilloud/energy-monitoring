@@ -7,6 +7,22 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('profile', function() {
+    this.route('index');
+    this.route('housings', function() {
+      this.route('index');
+      this.route('edit', { path: '/:housing_id' }, function(){
+        this.route('meters', function() {
+          this.route('edit', { path: '/:meter_id' });
+        });
+      });
+
+
+    });
+  });
+
+
+  this.route('dashboard');
 });
 
 export default Router;
