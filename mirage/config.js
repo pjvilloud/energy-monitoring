@@ -19,9 +19,14 @@ export default function() {
     return schema.meters.find(request.params.id);
   });
 
+  this.put('/meters/:id');
+  this.patch('/meters/:id');
+
   this.get('/meters/:id/readings', (schema, request) => {
     let meter = schema.meters.find(request.params.id);
     return meter.readings;
   });
+
+
 
 }

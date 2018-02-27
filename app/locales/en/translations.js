@@ -3,7 +3,14 @@ export default {
   //
   "actions": {
     "save": "Save",
-    "edit": "Edit"
+    "edit": "Edit",
+    "delete": "Delete",
+    "edit-success": "This item has been successfully modified",
+    "edit-fail": "This item can't be modified",
+    "add-success": "This item has been successfully added",
+    "add-fail": "This item can't be added",
+    "delete-success": "This item has been successfully deleted",
+    "delete-fail": "This item could not be deleted",
   },
   "profile": {
     title: "Profile",
@@ -46,7 +53,8 @@ export default {
         types: {
           electricity: "Electricity",
           water: "Water",
-          gas: "Gas"
+          gas: "Gas",
+          wood: "Wood"
         },
         type: "Type",
         type_placeholder: "Type",

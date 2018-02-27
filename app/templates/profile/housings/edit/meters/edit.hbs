@@ -1,20 +1,34 @@
 <div class="row">
   <div class="col-lg form-group">
     <label for="meterName">{{t "profile.housings.meters.name"}}</label>
-    <input class="form-control" id="meterName" aria-describedby="meterNameHelp" placeholder="{{t "profile.housings.meters.name_placeholder"}}" type="text" value="{{model.name}}">
-    <small id="meterNameHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+    {{input classNames="form-control" classNameBindings="model.validations.attrs.name.isValid:is-valid:is-invalid" id="meterName" aria-describedby="meterNameHelp" placeholder=(t "profile.housings.meters.name_placeholder") type="text" value=model.name}}
+    {{#if model.validations.attrs.name.isValid}}
+      <small id="meterNameHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.name.messages}}</div>
+    {{/if}}
+
   </div>
   <div class="col-lg form-group">
     <label for="meterDescription">{{t "profile.housings.meters.description"}}</label>
-    <input class="form-control" id="meterDescription" aria-describedby="meterDescriptionHelp" placeholder="{{t "profile.housings.description_placeholder"}}" type="text" value="{{model.description}}">
-    <small id="meterDescriptionHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+    {{input class="form-control" classNameBindings="model.validations.attrs.description.isValid:is-valid:is-invalid" id="meterDescription" aria-describedby="meterDescriptionHelp" placeholder=(t "profile.housings.description_placeholder") type="text" value=model.description}}
+    {{#if model.validations.attrs.description.isValid}}
+      <small id="meterDescriptionHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.description.messages}}</div>
+    {{/if}}
   </div>
 </div>
 <div class="row">
   <div class="col-lg form-group">
     <label for="meterReference">{{t "profile.housings.meters.reference"}}</label>
-    <input class="form-control" id="meterReference" aria-describedby="meterReferenceHelp" placeholder="{{t "profile.housings.meters.reference_placeholder"}}" type="text" value="{{model.reference}}">
-    <small id="meterReferenceHelp" class="form-text text-muted">{{t "profile.housings.meters.reference_help"}}</small>
+    {{input class="form-control" classNameBindings="model.validations.attrs.reference.isValid:is-valid:is-invalid" id="meterReference" aria-describedby="meterReferenceHelp" placeholder=(t "profile.housings.meters.reference_placeholder") type="text" value=model.reference}}
+
+    {{#if model.validations.attrs.reference.isValid}}
+      <small id="meterReferenceHelp" class="form-text text-muted">{{t "profile.housings.meters.reference_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.reference.messages}}</div>
+    {{/if}}
   </div>
   <div class="col-lg form-group">
     <label for="meterType">{{t "profile.housings.meters.type"}}</label>
@@ -26,34 +40,57 @@
     as |meterType|}}
       {{fa-icon meterType.icon}} <strong>{{t (concat "profile.housings.meters.types." meterType.slug)}}</strong>
     {{/power-select}}
-    <small id="meterTypeHelp" class="form-text text-muted">{{t "profile.housings.meters.type_help"}}</small>
+    {{#if model.validations.attrs.type.isValid}}
+      <small id="meterTypeHelp" class="form-text text-muted">{{t "profile.housings.meters.type_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.type.messages}}</div>
+    {{/if}}
   </div>
 </div>
+{{#if selectedType}}
 <div class="row">
-  <div class="col-lg form-group">
-    <label for="meterUnit">{{t "profile.housings.meters.unit"}}</label>
-    {{#power-select
-      classNames="form-control"
-      selected=model.unit
-      options=units
-      onchange=(action (mut model.unit))
-    as |unit|}}
-      {{{unit}}}
-    {{/power-select}}
-    <small id="meterUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.unit_help"}}</small>
-  </div>
   <div class="col-lg form-group">
     <label for="meterPricePerUnit">{{t "profile.housings.meters.pricePerUnit"}}</label>
     <div class="input-group">
-      <input class="form-control" id="meterPricePerUnit" aria-describedby="meterPricePerUnitHelp" placeholder="{{t "profile.housings.meters.pricePerUnit_placeholder"}}" type="text" value="{{model.pricePerUnit}}">
+      {{input class="form-control" classNameBindings="model.validations.attrs.pricePerUnit.isValid:is-valid:is-invalid" id="meterPricePerUnit" aria-describedby="meterPricePerUnitHelp" placeholder=(t "profile.housings.meters.pricePerUnit_placeholder") type="text" value=model.pricePerUnit}}
       <div class="input-group-append">
         <span class="input-group-text" id="currencyPricePerUnit">{{model.housing.profile.currencySymbol}} / {{{model.unit}}}</span>
       </div>
+      {{#if model.validations.attrs.pricePerUnit.isValid}}
+        <small id="meterPricePerUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.pricePerUnit_help"}}</small>
+      {{else}}
+        <div class="invalid-feedback">{{model.validations.attrs.pricePerUnit.messages}}</div>
+      {{/if}}
     </div>
-    <small id="meterPricePerUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.pricePerUnit_help"}}</small>
+
+  </div>
+  <div class="col-lg form-group">
+  <label for="meterUnit">{{t "profile.housings.meters.unit"}}</label>
+  {{#power-select
+    classNames="form-control"
+    selected=model.unit
+    options=units
+    onchange=(action (mut model.unit))
+  as |unit|}}
+    {{{unit}}}
+  {{/power-select}}
+
+    {{#if model.validations.attrs.unit.isValid}}
+      <small id="meterUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.unit_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.unit.messages}}</div>
+    {{/if}}
   </div>
 </div>
+{{/if}}
 <div class="form-group">
-  <button class="btn btn-primary">{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{#if model.validations.isValid}}
+    <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{else}}
+    <button type="button" class="btn btn-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{/if}}
+  {{#if (not model.isNew)}}
+    <button class="btn btn-danger" {{action "delete"}}>{{fa-icon "trash"}} {{t "actions.delete"}}</button>
+  {{/if}}
 </div>
 

@@ -11,7 +11,7 @@ export default Factory.extend({
     return faker.random.words();
   },
   unit(){
-    return faker.random.arrayElement(["kWh","m3", "stere"]);
+    return faker.random.arrayElement(["kWh","m<sup>3</sup>", "stere"]);
   },
   pricePerUnit(){
     return faker.random.number();

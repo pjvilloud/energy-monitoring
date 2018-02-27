@@ -3,7 +3,14 @@ export default {
   //
   "actions": {
     "save": "Enregistrer",
-    "edit": "Modifier"
+    "edit": "Modifier",
+    "delete": "Delete",
+    "edit-success": "Cet élément a été modifié avec succès",
+    "edit-fail": "Cet élément n'a pas pu être modifié",
+    "add-success": "Cet élément a été ajouté avec succès",
+    "add-fail": "Cet élément n'a pas pu être ajouté",
+    "delete-success": "Cet élément a été supprimé avec succès",
+    "delete-fail": "Cet élément n'a pas pu être supprimé",
   },
   "profile": {
     title: "Profil",
@@ -46,7 +53,8 @@ export default {
         types: {
           electricity: "Electricité",
           water: "Eau",
-          gas: "Gaz"
+          gas: "Gaz",
+          wood: "Bois"
         },
         type: "Type",
         type_placeholder: "Type",
@@ -71,8 +79,45 @@ export default {
   "language-select.country": {
     "fr": "France",
     "en": "United Kingdom",
-  }
+  },
 
   //
   // "key.with.interpolation": "Text with {{anInterpolation}}"
+
+  errors: {
+    description: "Ce champ",
+    inclusion: "{{description}} n'est pas inclus dans la liste",
+    exclusion: "{{description}} est réservé",
+    invalid: "{{description}} est invalide",
+    confirmation: "{{description}} ne correspond pas à {{on}}",
+    accepted: "{{description}} doit être accepté",
+    empty: "{{description}} ne peut pas être vide",
+    blank: "{{description}} doit être renseigné",
+    present: "{{description}} doit être présent",
+    collection: "{{description}} doit être une collection",
+    singular: "{{description}} ne peut pas être une collection",
+    tooLong: "{{description}} est trop long (maximum {{max}} caractères)",
+    tooShort: "{{description}} est trop court (minimum {{min}} caractères)",
+    before: "{{description}} dot être avant {{before}}",
+    after: "{{description}} doit être après {{after}}",
+    wrongDateFormat: "{{description}} doit être au format {{format}}",
+    wrongLength: "{{description}} n'a pas la bonne taille (devrait avoir {{is}} caractères)",
+    notANumber: "{{description}} doit être un nombre",
+    notAnInteger: "{{description}} doit être un entier",
+    greaterThan: "{{description}} must be greater than {{gt}}",
+    greaterThanOrEqualTo: "{{description}} doit être supérieur ou égal à {{gte}}",
+    equalTo: "{{description}} doit être égal à {{is}}",
+    lessThan: "{{description}} doit être inférieur à {{lt}}",
+    lessThanOrEqualTo: "{{description}} doit être inférieur ou égal à {{lte}}",
+    otherThan: "{{description}} ne doit pas valoir {{value}}",
+    odd: "{{description}} doit être impair",
+    even: "{{description}} doit être pair",
+    positive: "{{description}} doit être positif",
+    date: "{{description}} doit être une date valide",
+    onOrAfter: '{{description}} must be on or after {{onOrAfter}}',
+    onOrBefore: '{{description}} must be on or before {{onOrBefore}}',
+    email: "{{description}} doit être une adresse e-mail valide",
+    phone: "{{description}} doit être un téléphone valide",
+    url: "{{description}} doit être une URL valide"
+  }
 };
