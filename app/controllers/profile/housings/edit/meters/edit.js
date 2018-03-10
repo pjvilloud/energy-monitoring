@@ -1,17 +1,18 @@
 import Controller from '@ember/controller';
-import Ember from 'ember';
+import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 import MetersTypes from 'energy-monitoring/utils/meters-types';
 
 export default Controller.extend({
-  i18n: Ember.inject.service(),
-  metersTypes:MetersTypes.metersTypes,
-  selectedType: Ember.computed("metersTypes", "model.type", function(){
+  i18n: inject.service(),
+  metersTypes: MetersTypes.metersTypes,
+  selectedType: computed("metersTypes", "model.type", function(){
     return this.get("metersTypes").filterBy("slug", this.get("model.type"))[0];
   }),
-  selectedUnit: Ember.computed("model.unit", function(){
+  selectedUnit: computed("model.unit", function(){
     return this.get("model.unit");
   }),
-  units: Ember.computed("selectedType", function(){
+  units: computed("selectedType", function(){
     if(this.get("selectedType")){
       let array = [this.get("selectedType.defaultUnit")]
       return array.concat(this.get("selectedType.otherUnits"));

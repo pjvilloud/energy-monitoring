@@ -6,7 +6,7 @@ export default function() {
     return schema.profiles.find(request.params.id);
   });
 
-  this.get('/housings', (schema, request) => {
+  this.get('/housings', (schema) => {
     return schema.housings.all();
   });
 

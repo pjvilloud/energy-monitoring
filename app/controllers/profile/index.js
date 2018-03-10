@@ -1,10 +1,10 @@
 import Controller from '@ember/controller';
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import Currencies from 'energy-monitoring/utils/currencies';
 import Countries from 'energy-monitoring/utils/countries';
 
 export default Controller.extend({
-  selectedCurrency: Ember.computed("model.currency", "model.currencySymbol", "model.currencyCode", function(){
+  selectedCurrency: computed("model.{currency,currencySymbol,currencyCode}", function(){
     return this.get("currencies").filterBy("code", this.get("model.currencyCode"))[0];
   }),
   currencies:Currencies.currencies,

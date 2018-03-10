@@ -1,21 +1,20 @@
-import Ember from 'ember';
-import moment from "moment";
-
-const { Component, computed, inject } = Ember;
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Component.extend({
   classNames: [ "col-lg", "form-group", "language-chooser" ],
   i18n: inject.service(),
   moment: inject.service(),
   //Retourne la locale active
-  current: function(){
+  current: computed("i18n.locale", function(){
     const i18n = this.get("i18n");
     return {
       id: this.get("i18n.locale.id"),
       text: i18n.t("language-select.language." + this.get("i18n.locale")),
       img: "/img/flags/Flag of " + i18n.t("language-select.country." + this.get("i18n.locale")) + ".png"
     };
-  }.property("i18n.locale"),
+  }),
   //Retourne l'ensemble des locales
   locales: computed("i18n.locales", function() {
     const i18n = this.get("i18n");

@@ -17,7 +17,7 @@ const Validations = buildValidations({
   ],
   type: [
     validator('presence', true),
-    validator(function(value, options, model) {
+    validator(function(value) {
       return MetersType.metersTypes.mapBy("slug").includes(value);
     })
   ],

@@ -1,8 +1,8 @@
-import Ember from 'ember';
 import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
 
 export default Route.extend({
-  i18n: Ember.inject.service(),
+  i18n: inject.service(),
   model(){
     return this.store.findRecord("profile",1);
   },
