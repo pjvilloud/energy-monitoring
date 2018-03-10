@@ -31,8 +31,9 @@ const Validations = buildValidations({
     })
   ],
   pricePerUnit:[
-    validator('format', {
-      regex: /.*/,
+    validator('number', {
+      allowString:true,
+      gt:0
     })
   ],
   description: [

@@ -1,10 +1,10 @@
 import Controller from '@ember/controller';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import MetersTypes from 'energy-monitoring/utils/meters-types';
 
 export default Controller.extend({
-  i18n: inject.service(),
+  i18n: service(),
   metersTypes: MetersTypes.metersTypes,
   selectedType: computed("metersTypes", "model.type", function(){
     return this.get("metersTypes").filterBy("slug", this.get("model.type"))[0];

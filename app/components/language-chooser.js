@@ -1,11 +1,11 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { inject } from '@ember/service';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   classNames: [ "col-lg", "form-group", "language-chooser" ],
-  i18n: inject.service(),
-  moment: inject.service(),
+  i18n: service(),
+  moment: service(),
   //Retourne la locale active
   current: computed("i18n.locale", function(){
     const i18n = this.get("i18n");
