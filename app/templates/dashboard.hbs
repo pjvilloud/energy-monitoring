@@ -1,1 +1,11 @@
-{{outlet}}
+{{#grid-stack
+  options=(hash animate=true)
+}}
+  {{#grid-stack-item options=(hash x=0 y=0 width=6 height=2)}}
+    {{meter-widget}}
+  {{/grid-stack-item}}
+  {{#grid-stack-item options=(hash x=6 y=0 width=6 height=2)}}
+    {{meter-widget}}
+  {{/grid-stack-item}}
+
+{{/grid-stack}}
