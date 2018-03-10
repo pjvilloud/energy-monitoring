@@ -47,7 +47,7 @@
               <th scope="row">{{meter.type}}</th>
               <th scope="row">{{meter.reference}}</th>
               <td>
-                {{#if (not model.isNew)}}
+                {{#if (not meter.isNew)}}
                   {{#link-to "profile.housings.edit.meters.edit" model.id meter.id classNames="btn btn-primary"}}{{fa-icon "pencil"}} {{t "actions.edit"}}{{/link-to}}
                 {{/if}}
               </td>
