@@ -87,7 +87,7 @@
   {{#if model.validations.isValid}}
     <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
   {{else}}
-    <button type="button" class="btn btn-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
+    <button type="button" class="btn btn-outline-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
   {{/if}}
   {{#if (not model.isNew)}}
     <button class="btn btn-danger" {{action "delete"}}>{{fa-icon "trash"}} {{t "actions.delete"}}</button>

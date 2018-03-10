@@ -2,8 +2,12 @@
 <div class="row">
   <div class="col-lg form-group">
     <label for="userName">{{t "profile.general_informations.username"}}</label>
-    <input class="form-control" id="userName" aria-describedby="userNameHelp" placeholder="{{t "profile.general_informations.username_placeholder"}}" type="text" value="{{model.username}}">
-    <small id="emailHelp" class="form-text text-muted">{{t "profile.general_informations.username_help"}}.</small>
+    {{input classNames="form-control" classNameBindings="model.validations.attrs.username.isValid:is-valid:is-invalid" id="userName" aria-describedby="userNameHelp" placeholder=(t "profile.general_informations.username_placeholder") type="text" value=model.username}}
+    {{#if model.validations.attrs.username.isValid}}
+      <small id="emailHelp" class="form-text text-muted">{{t "profile.general_informations.username_help"}}.</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.username.messages}}</div>
+    {{/if}}
   </div>
   {{language-chooser}}
   <div class="col-lg form-group">
@@ -24,15 +28,27 @@
 <div class="row">
   <div class="col-lg form-group">
     <label for="country">{{t "profile.general_informations.country"}}</label>
-    <input class="form-control" id="country" aria-describedby="countryHelp" placeholder="{{t "profile.general_informations.country_help"}}" type="text" value="{{model.country}}">
-    <small id="countryHelp" class="form-text text-muted">{{t "profile.general_informations.country_help"}}</small>
+    {{input classNames="form-control" classNameBindings="model.validations.attrs.country.isValid:is-valid:is-invalid" id="country" aria-describedby="countryHelp" placeholder=(t "profile.general_informations.country_placeholder") type="text" value=model.country}}
+    {{#if model.validations.attrs.country.isValid}}
+      <small id="countryHelp" class="form-text text-muted">{{t "profile.general_informations.country_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.country.messages}}</div>
+    {{/if}}
   </div>
   <div class="col-lg form-group">
     <label for="city">{{t "profile.general_informations.city"}}</label>
-    <input class="form-control" id="city" aria-describedby="cityHelp" placeholder="{{t "profile.general_informations.city_placeholder"}}" type="text" value="{{model.city}}">
-    <small id="cityHelp" class="form-text text-muted">{{t "profile.general_informations.city_help"}}</small>
+    {{input classNames="form-control" classNameBindings="model.validations.attrs.city.isValid:is-valid:is-invalid" id="city" aria-describedby="cityHelp" placeholder=(t "profile.general_informations.city_placeholder") type="text" value=model.city}}
+    {{#if model.validations.attrs.city.isValid}}
+      <small id="cityHelp" class="form-text text-muted">{{t "profile.general_informations.city_help"}}</small>
+    {{else}}
+      <div class="invalid-feedback">{{model.validations.attrs.city.messages}}</div>
+    {{/if}}
   </div>
 </div>
 <div class="form-group">
-  <button class="btn btn-primary">{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{#if (and model.hasDirtyAttributes model.validations.isValid)}}
+    <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{else}}
+    <button type="button" class="btn btn-outline-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
+  {{/if}}
 </div>

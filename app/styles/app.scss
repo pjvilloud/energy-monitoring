@@ -6,3 +6,7 @@ $ember-power-select-border-radius: 0.4rem !default;
 img.flagSelect{
   height: 1.5rem;
 }
+
+button[disabled] {
+  cursor: not-allowed;
+}
