@@ -12,5 +12,10 @@ export default Route.extend({
   setupController(controller, model) {
     controller.set('profile', this.modelFor('profile'));
     this._super(controller, model)
+  },
+  actions:{
+    willTransition(){
+      this.controller.get("model").rollbackAttributes();
+    }
   }
 });

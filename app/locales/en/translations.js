@@ -34,6 +34,7 @@ export default {
       title: "Housings",
       add_housing: "Add housing",
       no_housing: "No housings yet ! Please add one.",
+      my_new_housing: "My new housing",
       name: "Name",
       name_placeholder: "Name",
       name_help: "?",

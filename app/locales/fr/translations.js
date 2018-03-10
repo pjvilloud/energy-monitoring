@@ -33,6 +33,7 @@ export default {
     housings: {
       title: "Logement",
       add_housing: "Ajouter un logement",
+      my_new_housing: "Mon nouveau logement",
       no_housing: "Pas encore de logement. Merci d'en ajouter un !",
       name: "Nom",
       name_placeholder: "Nom",

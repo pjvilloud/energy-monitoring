@@ -14,6 +14,9 @@ export default function() {
     return schema.housings.find(request.params.id);
   });
 
+  this.post('/housings');
+  this.put('/housings/:id');
+  this.patch('/housings/:id');
 
   this.get('/meters/:id', (schema, request) => {
     return schema.meters.find(request.params.id);
