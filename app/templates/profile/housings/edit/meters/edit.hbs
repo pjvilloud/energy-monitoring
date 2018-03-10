@@ -54,7 +54,7 @@
     <div class="input-group">
       {{input class="form-control" classNameBindings="model.validations.attrs.pricePerUnit.isValid:is-valid:is-invalid" id="meterPricePerUnit" aria-describedby="meterPricePerUnitHelp" placeholder=(t "profile.housings.meters.pricePerUnit_placeholder") type="text" value=model.pricePerUnit}}
       <div class="input-group-append">
-        <span class="input-group-text" id="currencyPricePerUnit">{{model.housing.profile.currencySymbol}} / {{{model.unit}}}</span>
+        <span class="input-group-text" id="currencyPricePerUnit">{{profile.currencySymbol}} / {{{model.unit}}}</span>
       </div>
       {{#if model.validations.attrs.pricePerUnit.isValid}}
         <small id="meterPricePerUnitHelp" class="form-text text-muted">{{t "profile.housings.meters.pricePerUnit_help"}}</small>

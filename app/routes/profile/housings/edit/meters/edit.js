@@ -8,5 +8,9 @@ export default Route.extend({
     } else {
       return this.store.findRecord("meter", params.meter_id);
     }
+  },
+  setupController(controller, model) {
+    controller.set('profile', this.modelFor('profile'));
+    this._super(controller, model)
   }
 });
