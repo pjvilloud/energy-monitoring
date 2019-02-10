@@ -26,10 +26,10 @@
 {{/if}}
 
 {{#if (not model.isNew)}}
-  <h4 class="mt-3">{{t "profile.housings.meters.title"}} {{#link-to "profile.housings.edit.meters.edit" model.id "new" classNames="btn btn-primary"}}{{fa-icon "plus"}} {{t "profile.housings.meters.add_meter"}}{{/link-to}}</h4>
+  <h4 class="mt-3">{{t "profile.housings.meters.title"}} {{#link-to "profile.housings.edit.meters.edit" model.id "new" classNames="btn btn-primary"}}{{fa-icon "plus"}} <span class="d-none d-sm-inline">{{t "profile.housings.meters.add_meter"}}</span>{{/link-to}}</h4>
 
   <div class="row">
-    <div class="col">
+    <div class="col-12 col-lg-6">
       {{#if model.meters}}
         <table class="table table-hover">
           <thead>
@@ -42,13 +42,13 @@
           </thead>
           <tbody>
           {{#each model.meters as |meter|}}
-            <tr>
+            <tr class={{if (eq meterEditController.model.id meter.id) "table-active" ""}}>
               <th scope="row">{{meter.name}}</th>
               <th scope="row">{{meter.type}}</th>
               <th scope="row">{{meter.reference}}</th>
               <td>
                 {{#if (not meter.isNew)}}
-                  {{#link-to "profile.housings.edit.meters.edit" model.id meter.id classNames="btn btn-primary"}}{{fa-icon "pencil"}} {{t "actions.edit"}}{{/link-to}}
+                  {{#link-to "profile.housings.edit.meters.edit" model.id meter.id classNames="btn btn-primary"}}{{fa-icon "pencil"}} <span class="d-none d-sm-inline">{{t "actions.edit"}}</span>{{/link-to}}
                 {{/if}}
               </td>
             </tr>
@@ -59,7 +59,7 @@
         {{t "profile.housings.meters.no_meter"}}
       {{/if}}
     </div>
-    <div class="col">
+    <div class="col-12 col-lg-6">
       {{outlet}}
     </div>
   </div>

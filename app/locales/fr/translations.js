@@ -4,7 +4,7 @@ export default {
   "actions": {
     "save": "Enregistrer",
     "edit": "Modifier",
-    "delete": "Delete",
+    "delete": "Supprimer",
     "edit-success": "Cet élément a été modifié avec succès",
     "edit-fail": "Cet élément n'a pas pu être modifié",
     "add-success": "Cet élément a été ajouté avec succès",

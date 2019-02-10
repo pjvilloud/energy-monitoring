@@ -1,9 +1,9 @@
-<h2>{{t "profile.housings.title"}} {{#link-to "profile.housings.edit" "new" classNames="btn btn-primary"}}{{fa-icon "plus"}} {{t "profile.housings.add_housing"}} {{/link-to}}
+<h2>{{t "profile.housings.title"}} {{#link-to "profile.housings.edit" "new" classNames="btn btn-primary"}}{{fa-icon "plus"}} <span class="d-none d-sm-inline">{{t "profile.housings.add_housing"}}</span> {{/link-to}}
 </h2>
 
 {{#if model}}
   <ul class="nav nav-tabs">
-  {{#each model as |housing|}}
+  {{#each model as |housing index|}}
     <li class="nav-item">
       {{#link-to "profile.housings.edit" housing.id classNames="nav-link" classNameBindings="housing.isNew:active"}}{{housing.name}}{{/link-to}}
     </li>
