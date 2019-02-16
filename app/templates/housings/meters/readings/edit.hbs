@@ -4,10 +4,8 @@
   {{/if}}
 </div>
 <div class="col-10">
-  <div class="row">
-    <h2>{{model.meter.name}} {{model.meter.type}}</h2>
-    <h4>{{model.meter.description}}</h4>
-  </div>
+  <h2>{{fa-icon selectedType.icon}} {{model.meter.name}}</h2>
+  <h3>{{model.meter.description}}</h3>
   <div class="row">
     <div class="col-lg form-group">
       <label for="readingDate">Date</label>

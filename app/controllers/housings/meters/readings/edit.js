@@ -2,8 +2,13 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { observer } from '@ember/object';
+import MetersTypes from 'energy-monitoring/utils/meters-types';
 
 export default Controller.extend({
+  metersTypes: MetersTypes.metersTypes,
+  selectedType: computed("metersTypes", "model.meter.type", function(){
+    return this.get("metersTypes").filterBy("slug", this.get("model.meter.type"))[0];
+  }),
   currentReading: null,
   i18n: service(),
   isNotLastReading: computed("model", "model.meter.readings.[]", function(){
