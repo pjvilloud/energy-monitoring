@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import MetersType from '../utils/meters-types';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { computed } from '@ember/object';
 
 const Validations = buildValidations({
   name: [
@@ -50,6 +51,18 @@ export default DS.Model.extend(Validations, {
   unit: DS.attr("string"),
   pricePerUnit: DS.attr("number"),
   reference: DS.attr("string"),
-  readings: DS.hasMany("reading", {async:true}),
-  housing: DS.belongsTo("housing")
+  readings: DS.hasMany("reading", {async:false}),
+  housing: DS.belongsTo("housing"),
+  lastReading: computed("readings.@each.readingDate", function(){
+    if(this.get("readings")){
+      return this.get("readings").reduce(function getMax(previousMax, reading) {
+        if(previousMax && moment.max(reading.get("readingDate"),previousMax.get("readingDate")) === previousMax.get("readingDate")){
+          return previousMax;
+        }
+        else {
+          return reading;
+        }
+      });
+    }
+  })
 });

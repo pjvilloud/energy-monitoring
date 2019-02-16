@@ -1,0 +1,70 @@
+<div class="col-1">
+  {{#if isNotFirstReading}}
+    {{fa-icon "angle-left" size="4" click=(action "previousReading")}}
+  {{/if}}
+</div>
+<div class="col-10">
+  <div class="row">
+    <h2>{{model.meter.name}} {{model.meter.type}}</h2>
+    <h4>{{model.meter.description}}</h4>
+  </div>
+  <div class="row">
+    <div class="col-lg form-group">
+      <label for="readingDate">Date</label>
+
+      {{#power-datepicker selected=model.readingDate onSelect=(action (mut model.readingDate) value="moment") as |dp|}}
+        {{#dp.trigger tabindex="-1"}}
+          <input type="text" class="form-control {{if model.validations.attrs.readingDate.isValid "is-valid" "is-invalid"}}" readonly value={{moment-format model.readingDate "D MMMM YYYY"}}>
+        {{/dp.trigger}}
+
+        {{#dp.content}}
+          {{dp.nav}}
+          {{dp.days}}
+        {{/dp.content}}
+      {{/power-datepicker}}
+
+      {{#if model.validations.attrs.readingDate.isValid}}
+        <small id="readingDateHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+      {{else}}
+        <div class="invalid-feedback">{{model.validations.attrs.readingDate.messages}}</div>
+      {{/if}}
+
+    </div>
+    <div class="col-lg form-group">
+      <label for="readingValue">Value</label>
+      <div class="input-group">
+        {{input classNames="form-control" classNameBindings="model.validations.attrs.readingValue.isValid:is-valid:is-invalid" id="readingValue" aria-describedby="readingValueHelp" type="number" value=model.readingValue}}
+        <div class="input-group-append">
+          <span class="input-group-text" id="meterUnit">{{{model.meter.unit}}}</span>
+        </div>
+      </div>
+      {{#if model.validations.attrs.readingValue.isValid}}
+        <small id="readingValueHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+      {{else}}
+        <div class="invalid-feedback">{{model.validations.attrs.readingValue.messages}}</div>
+      {{/if}}
+    </div>
+    <div class="col-lg form-group">
+      <label for="meterObservation">Observation</label>
+      {{input class="form-control" id="readingObservation" aria-describedby="readingObservationHelp" type="text" value=model.observation}}
+      <small id="meterObservationHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      {{#if model.validations.isValid}}
+        <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
+      {{else}}
+        <button type="button" class="btn btn-outline-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
+      {{/if}}
+      {{#if (not model.isNew)}}
+        <button class="btn btn-danger" {{action "delete"}}>{{fa-icon "trash"}} {{t "actions.delete"}}</button>
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="col-1">
+  {{#if isNotLastReading}}
+    {{fa-icon "angle-right" size="4" click=(action "nextReading")}}
+  {{/if}}
+</div>

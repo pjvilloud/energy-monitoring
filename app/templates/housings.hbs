@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-md-2 text-center mt-5">
+      <ul class="nav flex-row flex-md-column nav-pills">
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">{{fa-icon "home"}} Housing</a>
+        </li>
+        {{#each model as |housing index|}}
+          <li class="nav-item">
+            {{#link-to "housings.meters" housing.id classNames="nav-link"}}<span class="badge badge-primary">{{add index 1}}</span> <span class="d-none d-sm-inline">{{housing.name}}</span>{{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-12 col-md-10">
+      <div class="mt-3">
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+
+</div>
+

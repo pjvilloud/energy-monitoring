@@ -14,6 +14,11 @@ export default function() {
     return schema.housings.find(request.params.id);
   });
 
+  this.get('/readings/:id', (schema, request) => {
+    return schema.readings.find(request.params.id);
+  });
+
+
   this.post('/housings');
   this.put('/housings/:id');
   this.patch('/housings/:id');
@@ -25,6 +30,10 @@ export default function() {
   this.post('/meters');
   this.put('/meters/:id');
   this.patch('/meters/:id');
+
+  this.post('/readings');
+  this.put('/readings/:id');
+  this.patch('/readings/:id');
 
   this.get('/meters/:id/readings', (schema, request) => {
     let meter = schema.meters.find(request.params.id);

@@ -6,6 +6,7 @@ export default Component.extend({
   classNames: [ "col-lg", "form-group", "language-chooser" ],
   i18n: service(),
   moment: service(),
+  calendarService: service("power-calendar"),
   //Retourne la locale active
   current: computed("i18n.locale", function(){
     const i18n = this.get("i18n");
@@ -31,6 +32,7 @@ export default Component.extend({
       //Lors du changement de locale, on set au service i18n et à moment
       this.set("i18n.locale", locale.id);
       this.get("moment").changeLocale(locale.id);
+      this.get("calendarService").set("locale", locale.id);
     }
   }
 });

@@ -23,6 +23,13 @@ Router.map(function() {
 
 
   this.route('dashboard');
+  this.route('housings', function() {
+    this.route('meters', { path: '/:housing_id/meters' }, function() {
+      this.route('readings', {path: '/:meter_id/readings'}, function() {
+        this.route('edit', { path: '/:reading_id' });
+      });
+    });
+  });
 });
 
 export default Router;

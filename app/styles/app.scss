@@ -4,6 +4,9 @@ $ember-power-select-border-radius: 0.4rem !default;
 @import "ember-cli-bootswatch/bootswatch";
 @import 'ember-power-select/themes/bootstrap';
 @import 'ember-power-select';
+@import "ember-power-datepicker";
+@import "calendar";
+
 
 img.flagSelect{
   height: 1.5rem;

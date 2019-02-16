@@ -1,0 +1,8 @@
+<ul class="nav nav-tabs">
+  {{#each model.meters as |meter index|}}
+    <li class="nav-item">
+      {{#link-to "housings.meters.readings" meter.id classNames="nav-link"}}{{meter.name}}{{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+{{outlet}}

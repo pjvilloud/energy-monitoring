@@ -13,6 +13,10 @@ export default function(server) {
   });
   let housings = server.createList('housing', 2, {profile: profile});
   housings.forEach(housing => {
-    server.createList('meter', 3, {housing: housing});
+    let meters = server.createList('meter', 3, {housing: housing});
+    meters.forEach(meter => {
+      server.createList('reading', 3, {meter: meter});
+
+    })
   })
 }
