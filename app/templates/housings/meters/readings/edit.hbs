@@ -1,68 +1,78 @@
-<div class="col-1">
-  {{#if isNotFirstReading}}
-    {{fa-icon "angle-left" size="4" click=(action "previousReading")}}
-  {{/if}}
-</div>
-<div class="col-10">
-  <h2>{{fa-icon selectedType.icon}} {{model.meter.name}}</h2>
-  <h3>{{model.meter.description}}</h3>
-  <div class="row">
-    <div class="col-lg form-group">
-      <label for="readingDate">Date</label>
+{{#liquid-bind model as |reading|}}
+  
+<div class="row align-items-center">
+  <div class="col-1">
+    {{#if previousReadingId}}
+      {{#link-to "housings.meters.readings.edit" reading.meter.housing.id reading.meter.id previousReadingId}}
+        {{fa-icon "angle-left" size="4"}}
+      {{/link-to}}
+    {{/if}}
 
-      {{#power-datepicker selected=model.readingDate onSelect=(action (mut model.readingDate) value="moment") as |dp|}}
-        {{#dp.trigger tabindex="-1"}}
-          <input type="text" class="form-control {{if model.validations.attrs.readingDate.isValid "is-valid" "is-invalid"}}" readonly value={{moment-format model.readingDate "D MMMM YYYY"}}>
-        {{/dp.trigger}}
+  </div>
+  <div class="col-10">
+    <h2>{{fa-icon selectedType.icon}} {{reading.meter.name}}</h2>
+    <h3>{{reading.meter.description}}</h3>
+    <div class="row">
+      <div class="col-lg form-group">
+        <label for="readingDate">Date</label>
 
-        {{#dp.content}}
-          {{dp.nav}}
-          {{dp.days}}
-        {{/dp.content}}
-      {{/power-datepicker}}
+        {{#power-datepicker selected=reading.readingDate onSelect=(action (mut reading.readingDate) value="moment") as |dp|}}
+          {{#dp.trigger tabindex="-1"}}
+            <input type="text" class="form-control {{if reading.validations.attrs.readingDate.isValid "is-valid" "is-invalid"}}" readonly value={{moment-format reading.readingDate "D MMMM YYYY"}}>
+          {{/dp.trigger}}
 
-      {{#if model.validations.attrs.readingDate.isValid}}
-        <small id="readingDateHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
-      {{else}}
-        <div class="invalid-feedback">{{model.validations.attrs.readingDate.messages}}</div>
-      {{/if}}
+          {{#dp.content}}
+            {{dp.nav}}
+            {{dp.days}}
+          {{/dp.content}}
+        {{/power-datepicker}}
 
-    </div>
-    <div class="col-lg form-group">
-      <label for="readingValue">Value</label>
-      <div class="input-group">
-        {{input classNames="form-control" classNameBindings="model.validations.attrs.readingValue.isValid:is-valid:is-invalid" id="readingValue" aria-describedby="readingValueHelp" type="number" value=model.readingValue}}
-        <div class="input-group-append">
-          <span class="input-group-text" id="meterUnit">{{{model.meter.unit}}}</span>
-        </div>
+        {{#if reading.validations.attrs.readingDate.isValid}}
+          <small id="readingDateHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+        {{else}}
+          <div class="invalid-feedback">{{reading.validations.attrs.readingDate.messages}}</div>
+        {{/if}}
+
       </div>
-      {{#if model.validations.attrs.readingValue.isValid}}
-        <small id="readingValueHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
-      {{else}}
-        <div class="invalid-feedback">{{model.validations.attrs.readingValue.messages}}</div>
-      {{/if}}
+      <div class="col-lg form-group">
+        <label for="readingValue">Value</label>
+        <div class="input-group">
+          {{input classNames="form-control" classNameBindings="reading.validations.attrs.readingValue.isValid:is-valid:is-invalid" aria-describedby="readingValueHelp" type="number" value=reading.readingValue}}
+          <div class="input-group-append">
+            <span class="input-group-text" id="meterUnit">{{{reading.meter.unit}}}</span>
+          </div>
+        </div>
+        {{#if reading.validations.attrs.readingValue.isValid}}
+          <small class="readingValueHelp" class="form-text text-muted">{{t "profile.housings.meters.name_help"}}</small>
+        {{else}}
+          <div class="invalid-feedback">{{reading.validations.attrs.readingValue.messages}}</div>
+        {{/if}}
+      </div>
+      <div class="col-lg form-group">
+        <label for="meterObservation">Observation</label>
+        {{input class="form-control" aria-describedby="readingObservationHelp" type="text" value=reading.observation}}
+        <small class="meterObservationHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+      </div>
     </div>
-    <div class="col-lg form-group">
-      <label for="meterObservation">Observation</label>
-      {{input class="form-control" id="readingObservation" aria-describedby="readingObservationHelp" type="text" value=model.observation}}
-      <small id="meterObservationHelp" class="form-text text-muted">{{t "profile.housings.description_help"}}</small>
+    <div class="row">
+      <div class="form-group">
+        {{#if reading.validations.isValid}}
+          <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
+        {{else}}
+          <button type="button" class="btn btn-outline-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
+        {{/if}}
+        {{#if (not reading.isNew)}}
+          <button class="btn btn-danger" {{action "delete"}}>{{fa-icon "trash"}} {{t "actions.delete"}}</button>
+        {{/if}}
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="form-group">
-      {{#if model.validations.isValid}}
-        <button type="button" class="btn btn-primary" {{action "save"}}>{{fa-icon "save"}} {{t "actions.save"}}</button>
-      {{else}}
-        <button type="button" class="btn btn-outline-primary" disabled>{{fa-icon "save"}} {{t "actions.save"}}</button>
-      {{/if}}
-      {{#if (not model.isNew)}}
-        <button class="btn btn-danger" {{action "delete"}}>{{fa-icon "trash"}} {{t "actions.delete"}}</button>
-      {{/if}}
-    </div>
+  <div class="col-1">
+    {{#if nextReadingId}}
+      {{#link-to "housings.meters.readings.edit" reading.meter.housing.id reading.meter.id nextReadingId}}
+        {{fa-icon "angle-right" size="4"}}
+      {{/link-to}}
+    {{/if}}
   </div>
 </div>
-<div class="col-1">
-  {{#if isNotLastReading}}
-    {{fa-icon "angle-right" size="4" click=(action "nextReading")}}
-  {{/if}}
-</div>
+{{/liquid-bind}}

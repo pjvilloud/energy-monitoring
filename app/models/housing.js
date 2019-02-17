@@ -19,6 +19,6 @@ const Validations = buildValidations({
 export default DS.Model.extend(Validations, {
   name: DS.attr("string"),
   description: DS.attr("string"),
-  meters: DS.hasMany("meter", {async:true}),
+  meters: DS.hasMany("meter", {async:false}),
   profile: DS.belongsTo("profile")
 });

@@ -12,6 +12,10 @@ export default {
     "delete-success": "Cet élément a été supprimé avec succès",
     "delete-fail": "Cet élément n'a pas pu être supprimé",
   },
+  "navbar": {
+    dashboard: "Tableau de bord",
+    readings: "Relevés"
+  },
   "profile": {
     title: "Profil",
     "general_informations": {

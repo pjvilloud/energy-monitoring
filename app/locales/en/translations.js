@@ -12,6 +12,10 @@ export default {
     "delete-success": "This item has been successfully deleted",
     "delete-fail": "This item could not be deleted",
   },
+  "navbar": {
+    dashboard: "Dashboard",
+    readings: "Readings"
+  },
   "profile": {
     title: "Profile",
     "general_informations": {

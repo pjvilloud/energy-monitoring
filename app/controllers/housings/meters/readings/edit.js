@@ -11,15 +11,17 @@ export default Controller.extend({
   }),
   currentReading: null,
   i18n: service(),
-  isNotLastReading: computed("model", "model.meter.readings.[]", function(){
-    if(this.get("model.meter.readings.length") > 0){
-      return this.get("model.id") !== this.get("model.meter.readings.lastObject.id");
+  previousReadingId: computed("model.meter.readings.[]", function(){
+    let activeIndex = this.get("model.meter.readings").indexOf(this.get("model"));
+    if(activeIndex > 0) {
+      return this.get("model.meter.readings").objectAt(activeIndex - 1).get("id");
     }
   }),
-  isNotFirstReading: computed("model", "model.meter.readings.[]", function(){
-      if(this.get("model.meter.readings.length") > 0) {
-        return this.get("model.id") !== this.get("model.meter.readings.firstObject.id");
-      }
+  nextReadingId: computed("model.meter.readings.[]", function(){
+    let activeIndex = this.get("model.meter.readings").indexOf(this.get("model"));
+    if(activeIndex < (this.get("model.meter.readings.length") - 1)) {
+      return this.get("model.meter.readings").objectAt(activeIndex + 1).get("id");
+    }
   }),
   actions:{
     save(){
@@ -36,18 +38,6 @@ export default Controller.extend({
       }).catch(() => {
         this.toast.error(this.get("i18n").t("actions.delete-fail"));
       });
-    },
-    previousReading(){
-      let activeIndex = this.get("model.meter.readings").indexOf(this.get("model"));
-      if(activeIndex > 0) {
-        this.transitionToRoute("housings.meters.readings.edit", this.get("model.meter.readings").objectAt(activeIndex - 1).get("id"));
-      }
-    },
-    nextReading(){
-      let activeIndex = this.get("model.meter.readings").indexOf(this.get("model"));
-      if(activeIndex < (this.get("model.meter.readings.length") - 1)) {
-        this.transitionToRoute("housings.meters.readings.edit", this.get("model.meter.readings").objectAt(activeIndex + 1).get("id"));
-      }
-    },
+    }
   }
 });
