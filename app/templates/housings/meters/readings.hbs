@@ -1,6 +1,7 @@
 {{#liquid-bind model}}
   <div class="container-fluid">
-    {{liquid-outlet}}
+      {{ember-chart type="line" data=chartData options=chartOptions}}
+      {{liquid-outlet}}
   </div>
 {{/liquid-bind}}
 

@@ -10,7 +10,7 @@
 
   </div>
   <div class="col-10">
-    {{#link-to "housings.meters.readings.edit" "new" classNames="float-right btn btn-primary mt-2"}}
+    {{#link-to "housings.meters.readings.edit" reading.meter.housing.id reading.meter.id "new" classNames="float-right btn btn-primary mt-2"}}
       {{fa-icon "plus"}}
       <span class="d-none d-sm-inline">{{t "actions.add"}}</span>
     {{/link-to}}
