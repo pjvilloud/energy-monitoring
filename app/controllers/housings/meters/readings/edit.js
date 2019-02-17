@@ -26,7 +26,11 @@ export default Controller.extend({
   actions:{
     save(){
       this.get("model").save().then(() => {
-        this.toast.success(this.get("i18n").t("actions.edit-success"));
+        this.toast.success(this.get("i18n").t("actions.edit-success"), '', {
+          closeButton: true,
+          timeOut: 0,
+          extendedTimeOut: 0
+        });
       }).catch(() => {
         this.toast.error(this.get("i18n").t("actions.edit-fail"));
       });
@@ -35,6 +39,8 @@ export default Controller.extend({
       this.get("model").deleteRecord();
       this.get("model").save().then(() => {
         this.toast.success(this.get("i18n").t("actions.delete-success"));
+        let id = this.get("previousReadingId") ? this.get("previousReadingId") : this.get("nextReadingId")
+        this.transitionToRoute("housings.meters.readings.edit", this.get("model.meter.housing.id"), this.get("model.meter.id") ,id);
       }).catch(() => {
         this.toast.error(this.get("i18n").t("actions.delete-fail"));
       });

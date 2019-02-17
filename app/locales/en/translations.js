@@ -5,6 +5,7 @@ export default {
     "save": "Save",
     "edit": "Edit",
     "delete": "Delete",
+    "add": "Add",
     "edit-success": "This item has been successfully modified",
     "edit-fail": "This item can't be modified",
     "add-success": "This item has been successfully added",

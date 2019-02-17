@@ -57,5 +57,11 @@ module.exports = function(environment) {
     defaultLocale: 'en'
   };
 
+  ENV['ember-toastr'] = {
+    toastrOptions: {
+      toastClass: 'toastr'
+    }
+  };
+
   return ENV;
 };

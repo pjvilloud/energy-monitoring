@@ -3,7 +3,7 @@ export default function(){
      this.transition(
        this.debug(),
        this.toValue(function(toValue, fromValue) {
-         return toValue && fromValue && toValue._internalModel && toValue.get('meter.id') === fromValue.get("meter.id") && toValue.get('readingDate') && toValue.get('readingDate').isAfter(fromValue.get("readingDate"));
+         return toValue && fromValue && toValue._internalModel && toValue.get('meter.id') === fromValue.get("meter.id") && (toValue.get("isNew") || toValue.get('readingDate') && toValue.get('readingDate').isAfter(fromValue.get("readingDate")));
        }),
        this.use('toLeft'),
      );

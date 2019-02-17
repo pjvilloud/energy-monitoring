@@ -10,6 +10,10 @@
 
   </div>
   <div class="col-10">
+    {{#link-to "housings.meters.readings.edit" "new" classNames="float-right btn btn-primary mt-2"}}
+      {{fa-icon "plus"}}
+      <span class="d-none d-sm-inline">{{t "actions.add"}}</span>
+    {{/link-to}}
     <h2>{{fa-icon selectedType.icon}} {{reading.meter.name}}</h2>
     <h3>{{reading.meter.description}}</h3>
     <div class="row">
